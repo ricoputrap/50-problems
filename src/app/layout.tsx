@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Card, CardContent } from "@/components/ui/card";
 
-const fontSans = FontSans({
+const fontSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
@@ -28,9 +28,11 @@ export default function RootLayout({
         fontSans.variable
       )}>
         <header>
-          <Card>
+          <Card className="neu">
             <CardContent className="py-3">
-              <h2 className="text-xl text-center">50 Problems</h2>
+              <h2 className="text-xl text-center font-bold">
+                50 Problems
+              </h2>
             </CardContent>
           </Card>
         </header>
