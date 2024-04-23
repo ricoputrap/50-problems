@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-
     "db:local": "turso dev -p 8081 --db-file src/db/local/local.db",
     "db:generate": "bunx drizzle-kit generate:sqlite",
     "db:migrate": "bunx drizzle-kit push:sqlite",
@@ -16,6 +15,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.6.0",
+    "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.30.9",
