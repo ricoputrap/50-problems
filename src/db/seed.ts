@@ -1,3 +1,4 @@
+import ProblemService from "@/server/problem/problem-service";
 import { ICreateProblemParams } from "@/types/problem.types";
 
 const wait = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
@@ -29,10 +30,13 @@ const problems: ICreateProblemParams[] = [
 const seeding = async () => {
   console.log("Seeding DB...");
 
-  for (const problem of problems) {
-    // console.log("Seeded problem:", problem.content);
+  const problemService = new ProblemService();
 
+  console.log("Seeding problems...");
+  for (let i = 0; i < problems.length; i++) {
+    await problemService.create(problems[i]);
     await wait(1000);
+    console.log("Seeded problem", i + 1);
   }
 
   console.log("Seeding done!");
