@@ -1,3 +1,5 @@
+import ButtonBack from "@/components/ButtonBack";
+
 interface Props {
   children: React.ReactNode;
 }
@@ -5,7 +7,9 @@ interface Props {
 export default function ProblemLayout({ children }: Props) {
   return (
     <div className="px-3 pt-3">
-      <div className="mb-3">Back</div>
+      <div className="mb-3">
+        <ButtonBack />
+      </div>
       {children}
     </div>
   )
