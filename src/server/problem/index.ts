@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 const problemService = new ProblemService();
 
 const schema = z.object({
-  content: z.string().min(1),
+  content: z.string().min(1).max(256),
   username: z.string().min(1),
   twitter_username: z.string().optional(),
 })

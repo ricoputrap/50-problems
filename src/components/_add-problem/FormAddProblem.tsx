@@ -12,6 +12,7 @@ const FormAddProblem: React.FC = () => {
         name="content"
         placeholder="What's your problem?"
         className="mt-3"
+        maxLength={256}
         required
       />
 
@@ -24,7 +25,7 @@ const FormAddProblem: React.FC = () => {
 
       <div className="mt-8">
         <Label htmlFor='twitter_username' className="text-sm font-bold">
-          Your twitter ID
+          Your twitter ID (<i>e.g. johndoe</i>)*
         </Label>
         <Input type="text" id="twitter_username" name="twitter_username" />
       </div>
