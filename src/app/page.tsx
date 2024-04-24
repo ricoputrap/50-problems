@@ -1,5 +1,5 @@
+import AddProblemButton from "@/components/_home/AddProblemButton";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -18,9 +18,7 @@ export default function Home() {
 
       {/* Button [+ Add Problem] */}
       <div className="flex justify-center">
-        <Button className="font-bold">
-          + Add Problem
-        </Button>
+        <AddProblemButton />
       </div>
 
       {/* Tab - view type selector */}
