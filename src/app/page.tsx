@@ -1,6 +1,5 @@
-import ProblemPost from "@/components/ProblemPost";
 import AddProblemButton from "@/components/_home/AddProblemButton";
-import { Button } from "@/components/ui/button";
+import Feed from "@/components/_home/Feed";
 
 export default function Home() {
   return (
@@ -25,24 +24,7 @@ export default function Home() {
       {/* Tab - view type selector */}
 
       {/* Feed */}
-      <div className="mt-4 flex flex-col gap-3">
-        <ProblemPost
-          id={1}
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, esse! Earum neque maxime animi provident, fugiat minus repudiandae magni et at consectetur optio repellat quo, nisi quas adipisci voluptate itaque?"
-          username="rico_rpp21"
-          twitterID="rico_rpp21"
-          upvoteCount={40}
-          createdAt={Math.floor(new Date().getTime() / 1000)}
-        />
-
-        <ProblemPost
-          id={2}
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, esse! Earum neque maxime animi provident, fugiat minus repudiandae magni et at consectetur optio repellat quo, nisi quas adipisci voluptate itaque?"
-          username="rico_rpp21"
-          upvoteCount={50}
-          createdAt={Math.floor(new Date().getTime() / 1000)}
-        />
-      </div>
+      <Feed />
     </main>
   );
 }

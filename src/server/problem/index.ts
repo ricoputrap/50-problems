@@ -38,3 +38,20 @@ export async function createProblem(formData: FormData) {
   revalidatePath("/");
   redirect("/");
 }
+
+/**
+ * Get the top upvoted problems
+ * @param cursor an identifier for the last item fetched. The DB query will make use of this identifier.
+ * @param size the number of problems to return per page
+ */
+export async function getTopUpvotedProblems(cursor: number, size: number) {
+  const problems = await problemService.getTopUpvoted(cursor, size);
+
+  return {
+    pagination: {
+      size,
+      next_cursor: cursor + size
+    },
+    results: problems
+  }
+}

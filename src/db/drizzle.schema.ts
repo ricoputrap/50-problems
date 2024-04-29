@@ -3,9 +3,9 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 export const problem = sqliteTable('problem', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   content: text('content').notNull(),
-  upvote_count: integer('upvote_count').default(0),
+  upvote_count: integer('upvote_count').notNull().default(0),
   username: text('username').notNull(),
-  twitter_username: text('twitter_username'),
+  twitter_username: text('twitter_username').notNull().default(''),
   created_at: integer('created_at').notNull().$defaultFn(() => Math.floor(new Date().getTime() / 1000))
 });
 

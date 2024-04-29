@@ -8,6 +8,27 @@
       "when": 1713742701861,
       "tag": "0000_tiny_thunderbolts",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1714396615349,
+      "tag": "0001_adorable_marvel_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1714396748285,
+      "tag": "0002_gigantic_sunspot",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1714397375513,
+      "tag": "0003_broad_exiles",
+      "breakpoints": true
     }
   ]
 }
