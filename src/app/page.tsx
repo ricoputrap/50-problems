@@ -26,7 +26,7 @@ export default function Home() {
       {/* Tab - view type selector */}
 
       {/* Feed */}
-      <section className="mt-4">
+      <section className="mt-8">
         <Suspense fallback={<FeedSkeleton />}>
           <Feed />
         </Suspense>

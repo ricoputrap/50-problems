@@ -1,13 +1,17 @@
 import React from 'react'
 import { getTopUpvotedProblems } from '@/server/problem';
 import ProblemPost from '@/components/ProblemPost';
+import MoreProblemPosts from './MoreProblemPosts';
 
 export default async function Feed() {
-  const problems = await getTopUpvotedProblems(0, 10);
+  const {
+    pagination,
+    results: problems
+  } = await getTopUpvotedProblems(0, 5);
 
   return (
-    <div className="mt-4 flex flex-col gap-3">
-      {problems.results.map(({
+    <div className="flex flex-col gap-3">
+      {problems.map(({
         id,
         content,
         username,
@@ -25,6 +29,8 @@ export default async function Feed() {
           createdAt={created_at}
         />
       ))}
+
+      <MoreProblemPosts nextCursor={pagination.next_cursor} />
     </div>
   )
 }

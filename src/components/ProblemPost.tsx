@@ -27,7 +27,7 @@ const ProblemPost: React.FC<Props> = ({
   return (
     <Card>
       <CardContent className="px-4 py-2">
-        <div className="flex items-center gap-3">
+        <div className="flex justify-between items-center gap-3">
           <div>
             <p>{content}</p>
 
