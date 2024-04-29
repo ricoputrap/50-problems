@@ -1,5 +1,7 @@
+import FeedSkeleton from "@/components/FeedSkeleton";
 import AddProblemButton from "@/components/_home/AddProblemButton";
 import Feed from "@/components/_home/Feed";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -24,7 +26,11 @@ export default function Home() {
       {/* Tab - view type selector */}
 
       {/* Feed */}
-      <Feed />
+      <section className="mt-4">
+        <Suspense fallback={<FeedSkeleton />}>
+          <Feed />
+        </Suspense>
+      </section>
     </main>
   );
 }
