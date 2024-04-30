@@ -25,6 +25,23 @@ class ProblemRepository implements IProblemRepository {
     return problems
   }
 
+  /**
+   * Get the top latest problems
+   * @param cursor an identifier for the last item fetched
+   * @param size the number of problems to return per page
+   * @returns an array top <size> latest problems
+   */
+  async getTopLatest(cursor: number, size: number) {
+    const problems = await db
+      .select()
+      .from(problemTable)
+      .orderBy(desc(problemTable.created_at))
+      .limit(size)
+      .offset(cursor);
+
+    return problems
+  }
+
   async create(params: ICreateProblemParams) {
     const { content, username, twitter_username } = params;
 

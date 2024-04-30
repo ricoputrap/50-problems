@@ -13,6 +13,10 @@ class ProblemService {
     return await this.problemRepository.getTopUpvoted(cursor, size);
   }
 
+  async getTopLatest(cursor: number, size: number) {
+    return await this.problemRepository.getTopLatest(cursor, size);
+  }
+
   async create(params: ICreateProblemParams) {
     await this.problemRepository.create(params);
   }

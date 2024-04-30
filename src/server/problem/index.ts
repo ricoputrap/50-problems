@@ -56,6 +56,23 @@ export async function getTopUpvotedProblems(cursor: number, size: number) {
   }
 }
 
+/**
+ * Get the top latest problems
+ * @param cursor an identifier for the last item fetched. The DB query will make use of this identifier.
+ * @param size the number of problems to return per page
+ */
+export async function getTopLatestProblems(cursor: number, size: number) {
+  const problems = await problemService.getTopLatest(cursor, size);
+
+  return {
+    pagination: {
+      size,
+      next_cursor: cursor + size
+    },
+    results: problems
+  }
+}
+
 export async function upvoteProblem(id: number) {
   return await problemService.upvote(id);
 }
