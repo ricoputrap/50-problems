@@ -16,6 +16,14 @@ class ProblemService {
   async create(params: ICreateProblemParams) {
     await this.problemRepository.create(params);
   }
+
+  async upvote(id: number) {
+    return await this.problemRepository.upvote(id);
+  }
+
+  async downvote(id: number) {
+    return await this.problemRepository.downvote(id);
+  }
 }
 
 export default ProblemService;

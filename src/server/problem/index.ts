@@ -55,3 +55,11 @@ export async function getTopUpvotedProblems(cursor: number, size: number) {
     results: problems
   }
 }
+
+export async function upvoteProblem(id: number) {
+  return await problemService.upvote(id);
+}
+
+export async function downvoteProblem(id: number) {
+  return await problemService.downvote(id);
+}

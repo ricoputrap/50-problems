@@ -2,7 +2,7 @@ import { ICreateProblemParams } from "@/types/problem.types";
 import { IProblemRepository } from "./problem-repository.types";
 import db from "@/db";
 import { problem as problemTable } from "@/db/drizzle.schema";
-import { desc } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 
 class ProblemRepository implements IProblemRepository {
   
@@ -31,6 +31,40 @@ class ProblemRepository implements IProblemRepository {
     await db
       .insert(problemTable)
       .values({ content, username, twitter_username });
+  }
+
+  async upvote(id: number) {
+    try {
+      await db
+        .update(problemTable)
+        .set({
+          upvote_count: sql`${problemTable.upvote_count} + 1`
+        })
+        .where(eq(problemTable.id, id));
+
+      return true;
+    }
+    catch (error) {
+      // TODO: handle error properly
+      return false;
+    }
+  }
+
+  async downvote(id: number) {
+    try {
+      await db
+        .update(problemTable)
+        .set({
+          upvote_count: sql`${problemTable.upvote_count} - 1`
+        })
+        .where(eq(problemTable.id, id));
+
+      return true;
+    }
+    catch (error) {
+      // TODO: handle error properly
+      return false;
+    }
   }
 }
 
