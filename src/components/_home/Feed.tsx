@@ -1,9 +1,12 @@
 import React from 'react'
+import { unstable_noStore as noStore } from 'next/cache';
 import { getTopUpvotedProblems } from '@/server/problem';
 import ProblemPost from '@/components/ProblemPost';
 import MoreProblemPosts from './MoreProblemPosts';
 
 export default async function Feed() {
+  noStore();
+
   const {
     pagination,
     results: problems
