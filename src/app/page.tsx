@@ -1,9 +1,17 @@
 import FeedSkeleton from "@/components/FeedSkeleton";
 import AddProblemButton from "@/components/_home/AddProblemButton";
 import Feed from "@/components/_home/Feed";
+import FeedTab from "@/components/_home/FeedTab";
+import { EnumFeedTab } from "@/types/feed.types";
 import { Suspense } from "react";
 
-export default function Home() {
+export default function Home({
+  searchParams
+} : {
+  searchParams: {
+    tab?: EnumFeedTab
+  }
+}) {
   return (
     <main>
       {/* Top 50 problems ... */}
@@ -24,11 +32,12 @@ export default function Home() {
       </div>
 
       {/* Tab - view type selector */}
+      <FeedTab />
 
       {/* Feed */}
       <section className="mt-8">
         <Suspense fallback={<FeedSkeleton />}>
-          <Feed />
+          <Feed tab={searchParams.tab || EnumFeedTab.TOP} />
         </Suspense>
       </section>
     </main>

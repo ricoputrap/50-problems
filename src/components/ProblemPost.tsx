@@ -36,7 +36,11 @@ const ProblemPost: React.FC<Props> = ({
                 <p>By</p>
                 <p>
                   {twitterID ? (
-                    <Link className='text-blue-500' href={`https://twitter.com/${twitterID}`} target="_blank">
+                    <Link
+                      className='text-blue-500'
+                      href={`https://twitter.com/${twitterID}`}
+                      target="_blank"
+                    >
                       @{username}
                     </Link>
                   ) : (
@@ -44,7 +48,7 @@ const ProblemPost: React.FC<Props> = ({
                   )}
                 </p>
 
-                <p>{formattedTime}</p>
+                <p className="ml-1">{formattedTime}</p>
                 <span>| <LinkReportProblem id={id} /></span>
               </div>
             </div>

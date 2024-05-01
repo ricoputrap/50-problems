@@ -3,8 +3,8 @@
 import { getTopUpvotedProblems } from '@/server/problem';
 import { IProblem } from '@/types/problem.types';
 import React, { useState } from 'react'
-import ProblemPost from '../ProblemPost';
 import { Button } from '../ui/button';
+import FeedProblems from './FeedProblems';
 
 interface Props {
   nextCursor: number;
@@ -33,24 +33,7 @@ const MoreProblemPosts: React.FC<Props> = ({ nextCursor }) => {
 
   return (
     <>
-      {problems.map(({
-        id,
-        content,
-        username,
-        twitter_username,
-        upvote_count,
-        created_at
-      }) => (
-        <ProblemPost
-          key={id}
-          id={id}
-          content={content}
-          username={username}
-          twitterID={twitter_username}
-          upvoteCount={upvote_count}
-          createdAt={created_at}
-        />
-      ))}
+      <FeedProblems problems={problems} />
 
       {isFinal ? (
         <p className="py-4 text-center">No more problems</p>
