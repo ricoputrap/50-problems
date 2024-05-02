@@ -6,9 +6,10 @@ import ProblemPost from '../ProblemPost';
 
 interface Props {
   problems: IProblem[];
+  startCursor?: number;
 }
 
-const FeedProblems: React.FC<Props> = ({ problems }) => {
+const FeedProblems: React.FC<Props> = ({ problems, startCursor = 0 }) => {
   return (
     <>
       {problems.map(({
@@ -18,10 +19,11 @@ const FeedProblems: React.FC<Props> = ({ problems }) => {
         twitter_username,
         upvote_count,
         created_at
-      }) => (
+      }, index) => (
         <ProblemPost
           key={id}
           id={id}
+          no={index + startCursor + 1}
           content={content}
           username={username}
           twitterID={twitter_username}
