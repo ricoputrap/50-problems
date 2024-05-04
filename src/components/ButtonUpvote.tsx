@@ -3,8 +3,9 @@
 import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { ThumbsUp } from 'lucide-react'
-import { downvoteProblem, upvoteProblem } from '@/server/problem';
+import { downvoteProblem as downvote, upvoteProblem as upvote } from '@/server/problem';
 import { cn } from '@/lib/utils';
+import useProblemStore from '@/stores/problem';
 
 interface Props {
   id: number;
@@ -16,23 +17,26 @@ const ButtonUpvote: React.FC<Props> = ({ id, count }) => {
    * TODO: use local storage to store the id of upvoted problems
    */
   const [isUpvoted, setIsUpvoted] = useState(false);
-  const [upvotedCount, setUpvotedCount] = useState(count);
+  const upvoteProblem = useProblemStore((state) => state.upvoteProblem);
+  const downvoteProblem = useProblemStore((state) => state.downvoteProblem);
 
   const handleClick = async () => {
     if (isUpvoted) {
-      const success = await downvoteProblem(id);
+      const success = await downvote(id);
       if (success) {
         setIsUpvoted(false);
-        setUpvotedCount(prevCount => prevCount - 1)
+        downvoteProblem(id);
+        // setUpvotedCount(prevCount => prevCount - 1)
       }
 
       return;
     }
 
-    const success = await upvoteProblem(id);
+    const success = await upvote(id);
     if (success) {
       setIsUpvoted(true);
-      setUpvotedCount(prevCount => prevCount + 1)
+      upvoteProblem(id);
+      // setUpvotedCount(prevCount => prevCount + 1)
     }
   }
 
@@ -46,7 +50,7 @@ const ButtonUpvote: React.FC<Props> = ({ id, count }) => {
     >
       <div className="flex flex-col">
         <ThumbsUp size={24} />
-        <p className="font-extrabold text-lg">{upvotedCount}</p>
+        <p className="font-extrabold text-lg">{count}</p>
       </div>
     </Button>
   )
