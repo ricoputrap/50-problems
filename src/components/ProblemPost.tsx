@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Card, CardContent } from './ui/card';
 import ButtonUpvote from './ButtonUpvote';
 import { getFormattedTime } from '@/lib/utils';
@@ -66,4 +66,4 @@ const ProblemPost: React.FC<Props> = ({
   )
 }
 
-export default ProblemPost
+export default memo(ProblemPost);
