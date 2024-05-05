@@ -2,40 +2,52 @@
 
 import useProblemStore from '@/stores/problem';
 import { EnumFeedTab } from '@/types/feed.types';
-import { IProblem } from '@/types/problem.types'
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react'
 import FeedProblems from './FeedProblems';
+import { getTopLatestProblems, getTopUpvotedProblems } from '@/server/problem';
 
-interface Props {
-  initialPosts: IProblem[];
-}
-
-const InitialPosts: React.FC<Props> = ({ initialPosts }) => {
+const InitialPosts: React.FC = () => {
   const searchParams = useSearchParams();
   const topProblems = useProblemStore((state) => state.topProblems);
   const newProblems = useProblemStore((state) => state.newProblems);
   const setProblems = useProblemStore((state) => state.setProblems);
 
-  // set initial posts
   useEffect(() => {
-    if (initialPosts.length === 0) return;
-    
+    const fetchInitialPosts = async () => {
+      const tab = searchParams.get('tab') as EnumFeedTab || EnumFeedTab.TOP;
+
+      if (tab === EnumFeedTab.TOP && topProblems.length === 0) {
+        const { results: initialPosts } = await getTopUpvotedProblems(0, 5);
+        if (initialPosts.length === 0) return;
+
+        setProblems(initialPosts, EnumFeedTab.TOP);
+        return;
+      }
+
+      if (tab === EnumFeedTab.NEW && newProblems.length === 0) {
+        const { results: initialPosts } = await getTopLatestProblems(0, 5);
+        if (initialPosts.length === 0) return;
+
+        setProblems(initialPosts, EnumFeedTab.NEW);
+        return;
+      }
+    }
+
+    fetchInitialPosts();
+  }, [searchParams, topProblems, newProblems])
+
+  const getInitialPosts = () => {
     const tab = searchParams.get('tab') as EnumFeedTab || EnumFeedTab.TOP;
 
-    if (tab === EnumFeedTab.TOP && topProblems.length === 0) {
-      setProblems(initialPosts, EnumFeedTab.TOP);
-      return;
-    }
+    if (tab === EnumFeedTab.TOP)
+      return topProblems;
 
-    if (tab === EnumFeedTab.NEW && newProblems.length === 0) {
-      setProblems(initialPosts, EnumFeedTab.NEW);
-      return;
-    }
-  }, [initialPosts, topProblems, newProblems, searchParams]);
+    return newProblems;
+  }
 
   return (
-    <FeedProblems problems={initialPosts} />
+    <FeedProblems problems={getInitialPosts()} />
   )
 }
 

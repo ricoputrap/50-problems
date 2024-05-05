@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from './ui/button'
 import { ThumbsUp } from 'lucide-react'
-import { downvoteProblem as downvote, upvoteProblem as upvote } from '@/server/problem';
 import { cn } from '@/lib/utils';
-import useProblemStore from '@/stores/problem';
+import useManageUpvoting from '@/hooks/useManageUpvoting';
 
 interface Props {
   id: number;
@@ -13,36 +12,13 @@ interface Props {
 }
 
 const ButtonUpvote: React.FC<Props> = ({ id, count }) => {
-  /**
-   * TODO: use local storage to store the id of upvoted problems
-   */
-  const [isUpvoted, setIsUpvoted] = useState(false);
-  const upvoteProblem = useProblemStore((state) => state.upvoteProblem);
-  const downvoteProblem = useProblemStore((state) => state.downvoteProblem);
+  const { handleVoting, checkIsUpvoted } = useManageUpvoting();
 
-  const handleClick = async () => {
-    if (isUpvoted) {
-      const success = await downvote(id);
-      if (success) {
-        setIsUpvoted(false);
-        downvoteProblem(id);
-        // setUpvotedCount(prevCount => prevCount - 1)
-      }
-
-      return;
-    }
-
-    const success = await upvote(id);
-    if (success) {
-      setIsUpvoted(true);
-      upvoteProblem(id);
-      // setUpvotedCount(prevCount => prevCount + 1)
-    }
-  }
+  const isUpvoted = checkIsUpvoted(id);
 
   return (
     <Button
-      onClick={handleClick}
+      onClick={() => handleVoting(id)}
       className={cn(
         "py-8 px-7",
         isUpvoted ? "bg-destructive" : "bg-accent-foreground"

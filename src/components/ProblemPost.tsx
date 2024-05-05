@@ -22,7 +22,7 @@ const ProblemPost: React.FC<Props> = ({
   username,
   twitterID,
   upvoteCount,
-  createdAt
+  createdAt,
 }) => {
   const formattedTime = getFormattedTime(createdAt);
 
@@ -59,7 +59,10 @@ const ProblemPost: React.FC<Props> = ({
             </div>
           </div>
 
-          <ButtonUpvote id={id} count={upvoteCount} />
+          <ButtonUpvote
+            id={id}
+            count={upvoteCount}
+          />
         </div>
       </CardContent>
     </Card>
