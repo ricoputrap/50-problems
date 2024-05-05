@@ -21,7 +21,7 @@ const ButtonUpvote: React.FC<Props> = ({ id, count }) => {
       onClick={() => handleVoting(id)}
       className={cn(
         "py-8 px-7",
-        isUpvoted ? "bg-destructive" : "bg-accent-foreground"
+        isUpvoted ? "bg-destructive hover:bg-destructive" : "bg-accent-foreground"
       )}
     >
       <div className="flex flex-col">
