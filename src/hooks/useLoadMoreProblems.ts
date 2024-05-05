@@ -23,7 +23,7 @@ const useLoadMoreProblems = () => {
 
   const loadMoreProblems = async () => {
     setIsLoading(true);
-    const tab = searchParams.get('tab') as EnumFeedTab;
+    const tab = searchParams.get('tab') as EnumFeedTab || EnumFeedTab.TOP;
 
     if (tab === EnumFeedTab.TOP) {
       const cursor = topProblems.length;
