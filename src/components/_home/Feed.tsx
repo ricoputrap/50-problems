@@ -1,12 +1,16 @@
 import React from 'react'
-import InitialPosts from './InitialPosts';
-import MoreProblems from './MoreProblems';
+import { EnumFeedTab } from '@/types/feed.types';
+import { getAllTopLatestProblems, getAllTopUpvotedProblems } from '@/server/problem';
+import FeedProblems from './FeedProblems';
 
-export default function Feed() {
+export default async function Feed({ tab }: { tab: EnumFeedTab }) {
+  const problems = tab === EnumFeedTab.TOP
+    ? await getAllTopUpvotedProblems()
+    : await getAllTopLatestProblems();
+
   return (
     <div className="flex flex-col gap-3">
-      <InitialPosts />
-      <MoreProblems />
+      <FeedProblems problems={problems} />
     </div>
   )
 }

@@ -80,3 +80,15 @@ export async function upvoteProblem(id: number) {
 export async function downvoteProblem(id: number) {
   return await problemService.downvote(id);
 }
+
+export async function getAllTopUpvotedProblems() {
+  const MAX_SIZE = 50;
+
+  return await problemService.getTopUpvoted(0, MAX_SIZE);
+}
+
+export async function getAllTopLatestProblems() {
+  const MAX_SIZE = 50;
+
+  return await problemService.getTopLatest(0, MAX_SIZE);
+}
