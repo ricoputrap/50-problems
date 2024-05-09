@@ -74,11 +74,17 @@ export async function getTopLatestProblems(cursor: number, size: number) {
 }
 
 export async function upvoteProblem(id: number) {
-  return await problemService.upvote(id);
+  const success = await problemService.upvote(id);
+
+  revalidatePath("/");
+  return success;
 }
 
 export async function downvoteProblem(id: number) {
-  return await problemService.downvote(id);
+  const success = await problemService.downvote(id);
+
+  revalidatePath("/");
+  return success;
 }
 
 export async function getAllTopUpvotedProblems() {
