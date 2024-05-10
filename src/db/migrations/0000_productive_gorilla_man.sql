@@ -1,10 +1,11 @@
 CREATE TABLE `problem` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`content` text NOT NULL,
-	`upvote_count` integer DEFAULT 0,
+	`upvote_count` integer DEFAULT 0 NOT NULL,
 	`username` text NOT NULL,
-	`twitter_username` text,
-	`created_at` integer NOT NULL
+	`twitter_username` text DEFAULT '' NOT NULL,
+	`created_at` integer NOT NULL,
+	`is_reported` integer DEFAULT 0 NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `report` (

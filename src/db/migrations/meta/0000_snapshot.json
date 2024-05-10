@@ -1,7 +1,7 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "24ba2072-ad51-45f7-97f3-e59020356cdc",
+  "id": "095a5cd1-9ef7-476f-a75f-366c137ad37c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "problem": {
@@ -25,7 +25,7 @@
           "name": "upvote_count",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": 0
         },
@@ -40,8 +40,9 @@
           "name": "twitter_username",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
         },
         "created_at": {
           "name": "created_at",
@@ -49,6 +50,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "is_reported": {
+          "name": "is_reported",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
         }
       },
       "indexes": {},

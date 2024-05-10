@@ -6,7 +6,8 @@ export const problem = sqliteTable('problem', {
   upvote_count: integer('upvote_count').notNull().default(0),
   username: text('username').notNull(),
   twitter_username: text('twitter_username').notNull().default(''),
-  created_at: integer('created_at').notNull().$defaultFn(() => Math.floor(new Date().getTime() / 1000))
+  created_at: integer('created_at').notNull().$defaultFn(() => Math.floor(new Date().getTime() / 1000)),
+  is_reported: integer('is_reported').notNull().default(0)
 });
 
 export const report = sqliteTable('report', {

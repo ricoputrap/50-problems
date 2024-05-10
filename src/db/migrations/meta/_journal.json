@@ -1,33 +1,12 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1713742701861,
-      "tag": "0000_tiny_thunderbolts",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1714396615349,
-      "tag": "0001_adorable_marvel_boy",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1714396748285,
-      "tag": "0002_gigantic_sunspot",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1714397375513,
-      "tag": "0003_broad_exiles",
+      "version": "6",
+      "when": 1715383736322,
+      "tag": "0000_productive_gorilla_man",
       "breakpoints": true
     }
   ]
