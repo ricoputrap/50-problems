@@ -1,5 +1,6 @@
 'use client';
 
+import { reportProblem } from '@/server/problem';
 import React from 'react'
 
 interface Props {
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const LinkReportProblem: React.FC<Props> = ({ id }) => {
-  const handleClick = () => {
-    console.log("Report problem ", id);
+  const handleClick = async () => {
+    await reportProblem(id);
   }
 
   return (
