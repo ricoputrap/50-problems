@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { getCookie, setCookie } from "@/lib/cookies.utils";
+import { COOKIE_KEY_UPVOTED_IDS } from "../../../constants";
 
 const problemService = new ProblemService();
 
@@ -73,8 +74,6 @@ export async function getTopLatestProblems(cursor: number, size: number) {
     results: problems
   }
 }
-
-const COOKIE_KEY_UPVOTED_IDS = "upvoted-ids";
 
 export async function upvoteProblem(id: number) {
   const success = await problemService.upvote(id);

@@ -4,13 +4,14 @@ import { getAllTopLatestProblems, getAllTopUpvotedProblems } from '@/server/prob
 import FeedProblems from './FeedProblems';
 import { getCookie } from '@/lib/cookies.utils';
 import { IProblemItem } from '@/types/problem.types';
+import { COOKIE_KEY_UPVOTED_IDS } from '../../../constants';
 
 const getProblems = async (tab: EnumFeedTab) => {
   const problems = tab === EnumFeedTab.TOP
     ? await getAllTopUpvotedProblems()
     : await getAllTopLatestProblems();
 
-  const upvotedIds = getCookie<number[]>("upvoted-ids", []);
+  const upvotedIds = getCookie<number[]>(COOKIE_KEY_UPVOTED_IDS, []);
 
   return problems.map((item) => {
     const problem: IProblemItem = {
