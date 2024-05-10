@@ -1,7 +1,10 @@
 import { ICreateProblemParams } from "@/types/problem.types";
 import { IProblemRepository } from "./problem-repository.types";
 import db from "@/db";
-import { problem as problemTable } from "@/db/drizzle.schema";
+import {
+  problem as problemTable,
+  report as reportTable
+} from "@/db/drizzle.schema";
 import { desc, eq, sql } from "drizzle-orm";
 
 class ProblemRepository implements IProblemRepository {
@@ -75,6 +78,20 @@ class ProblemRepository implements IProblemRepository {
           upvote_count: sql`${problemTable.upvote_count} - 1`
         })
         .where(eq(problemTable.id, id));
+
+      return true;
+    }
+    catch (error) {
+      // TODO: handle error properly
+      return false;
+    }
+  }
+
+  async report(id: number) {
+    try {
+      await db
+        .insert(reportTable)
+        .values({ problem_id: id });
 
       return true;
     }

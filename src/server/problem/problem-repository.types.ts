@@ -6,4 +6,5 @@ export interface IProblemRepository {
   create: (params: ICreateProblemParams) => Promise<void>;
   upvote: (id: number) => Promise<boolean>;
   downvote: (id: number) => Promise<boolean>;
+  report: (id: number) => Promise<boolean>;
 }

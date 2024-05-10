@@ -7,8 +7,11 @@ import { ZodError, z } from "zod";
 import { redirect } from "next/navigation";
 import { getCookie, setCookie } from "@/lib/cookies.utils";
 import { COOKIE_KEY_UPVOTED_IDS } from "../../../constants";
+import { IProblemRepository } from "./problem-repository.types";
+import ProblemRepository from "./problem-repository";
 
 const problemService = new ProblemService();
+const problemRepository: IProblemRepository = new ProblemRepository();
 
 const schema = z.object({
   content: z.string().min(1).max(256),
@@ -128,4 +131,9 @@ export async function getAllTopLatestProblems() {
   const MAX_SIZE = 50;
 
   return await problemService.getTopLatest(0, MAX_SIZE);
+}
+
+export async function reportProblem(id: number) {
+  const isSuccess = await problemRepository.report(id);
+  return isSuccess;
 }
