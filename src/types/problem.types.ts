@@ -7,6 +7,10 @@ export interface IProblem {
   created_at: number
 }
 
+export interface IProblemItem extends IProblem {
+  isUpvoted: boolean
+}
+
 export interface ICreateProblemParams {
   content: string
   username: string

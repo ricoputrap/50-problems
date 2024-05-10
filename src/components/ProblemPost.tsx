@@ -13,6 +13,7 @@ interface Props {
   twitterID?: string;
   upvoteCount: number;
   createdAt: number;
+  isUpvoted: boolean;
 }
 
 const ProblemPost: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const ProblemPost: React.FC<Props> = ({
   twitterID,
   upvoteCount,
   createdAt,
+  isUpvoted
 }) => {
   const formattedTime = getFormattedTime(createdAt);
 
@@ -62,6 +64,7 @@ const ProblemPost: React.FC<Props> = ({
           <ButtonUpvote
             id={id}
             count={upvoteCount}
+            isUpvoted={isUpvoted}
           />
         </div>
       </CardContent>

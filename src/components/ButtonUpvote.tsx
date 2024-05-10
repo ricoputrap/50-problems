@@ -9,12 +9,11 @@ import useManageUpvoting from '@/hooks/useManageUpvoting';
 interface Props {
   id: number;
   count: number;
+  isUpvoted: boolean;
 }
 
-const ButtonUpvote: React.FC<Props> = ({ id, count }) => {
-  const { handleVoting, checkIsUpvoted } = useManageUpvoting();
-
-  const isUpvoted = checkIsUpvoted(id);
+const ButtonUpvote: React.FC<Props> = ({ id, count, isUpvoted }) => {
+  const { handleVoting } = useManageUpvoting();
 
   return (
     <Button

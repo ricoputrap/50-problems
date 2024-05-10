@@ -5,6 +5,7 @@ import ProblemService from "./problem-service";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { redirect } from "next/navigation";
+import { getCookie, setCookie } from "@/lib/cookies.utils";
 
 const problemService = new ProblemService();
 
@@ -73,8 +74,17 @@ export async function getTopLatestProblems(cursor: number, size: number) {
   }
 }
 
+const COOKIE_KEY_UPVOTED_IDS = "upvoted-ids";
+
 export async function upvoteProblem(id: number) {
   const success = await problemService.upvote(id);
+
+  if (success) {
+    const upvotedIds = getCookie<number[]>(COOKIE_KEY_UPVOTED_IDS, []);
+    upvotedIds.push(id);
+
+    setCookie<number[]>(COOKIE_KEY_UPVOTED_IDS, upvotedIds);
+  }
 
   revalidatePath("/");
   return success;
@@ -82,6 +92,13 @@ export async function upvoteProblem(id: number) {
 
 export async function downvoteProblem(id: number) {
   const success = await problemService.downvote(id);
+
+  if (success) {
+    const upvotedIds = getCookie<number[]>(COOKIE_KEY_UPVOTED_IDS, []);
+    upvotedIds.splice(upvotedIds.indexOf(id), 1);
+
+    setCookie<number[]>(COOKIE_KEY_UPVOTED_IDS, upvotedIds);
+  }
 
   revalidatePath("/");
   return success;

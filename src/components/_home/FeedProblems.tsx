@@ -1,11 +1,11 @@
 "use client"
 
-import { IProblem } from '@/types/problem.types'
+import { IProblemItem } from '@/types/problem.types'
 import React from 'react'
 import ProblemPost from '../ProblemPost';
 
 interface Props {
-  problems: IProblem[];
+  problems: IProblemItem[];
   startCursor?: number;
 }
 
@@ -18,7 +18,8 @@ const FeedProblems: React.FC<Props> = ({ problems, startCursor = 0 }) => {
         username,
         twitter_username,
         upvote_count,
-        created_at
+        created_at,
+        isUpvoted
       }, index) => (
         <ProblemPost
           key={id}
@@ -29,6 +30,7 @@ const FeedProblems: React.FC<Props> = ({ problems, startCursor = 0 }) => {
           twitterID={twitter_username}
           upvoteCount={upvote_count}
           createdAt={created_at}
+          isUpvoted={isUpvoted}
         />
       ))}
     </>
