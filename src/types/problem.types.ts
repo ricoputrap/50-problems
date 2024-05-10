@@ -16,3 +16,17 @@ export interface ICreateProblemParams {
   username: string
   twitter_username?: string
 }
+
+export interface IFormState {
+  success: boolean;
+  values: {
+    content: string;
+    username: string;
+    twitter_username: string;
+  }
+  errors: {
+    content?: string;
+    username?: string;
+    twitter_username?: string;
+  }
+}

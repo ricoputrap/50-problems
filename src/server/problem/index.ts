@@ -1,9 +1,9 @@
 "use server"
 
-import { ICreateProblemParams } from "@/types/problem.types";
+import { ICreateProblemParams, IFormState } from "@/types/problem.types";
 import ProblemService from "./problem-service";
 import { revalidatePath } from "next/cache";
-import { z } from "zod";
+import { ZodError, z } from "zod";
 import { redirect } from "next/navigation";
 import { getCookie, setCookie } from "@/lib/cookies.utils";
 import { COOKIE_KEY_UPVOTED_IDS } from "../../../constants";
@@ -16,25 +16,40 @@ const schema = z.object({
   twitter_username: z.string().optional(),
 })
 
-export async function createProblem(formData: FormData) {
+export async function createProblem(prevState: IFormState, formData: FormData) {
   try {
     const validatedFields = schema.safeParse(Object.fromEntries(formData));
     if (!validatedFields.success) {
       console.log(validatedFields.error.flatten().fieldErrors);
       throw new Error("Failed to create problem")
     }
-  
+
     const params: ICreateProblemParams = {
       content: validatedFields.data.content,
       username: validatedFields.data.username,
       twitter_username: validatedFields.data.twitter_username
     }
-    
     await problemService.create(params);
+
+    setCookie<string>("username", validatedFields.data.username);
+    setCookie<string>("twitter_username", validatedFields.data.twitter_username);
   }
   catch (error) {
+    const zodError = error as ZodError;
+    const errors = zodError.flatten().fieldErrors;
+
     return {
-      message: "Failed to create problem",
+      success: false,
+      values: {
+        content: prevState.values.content,
+        username: prevState.values.username,
+        twitter_username: prevState.values.twitter_username
+      },
+      errors: {
+        content: errors["content"]?.[0] || "",
+        username: errors["username"]?.[0] || "",
+        twitter_username: errors["twitter_username"]?.[0] || ""
+      }
     }
   }
   revalidatePath("/");
