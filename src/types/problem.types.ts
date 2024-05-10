@@ -5,6 +5,7 @@ export interface IProblem {
   username: string
   twitter_username: string
   created_at: number
+  is_reported: number
 }
 
 export interface IProblemItem extends IProblem {

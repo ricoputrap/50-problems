@@ -13,6 +13,7 @@ interface Props {
   twitterID?: string;
   upvoteCount: number;
   createdAt: number;
+  isReported: boolean;
   isUpvoted: boolean;
 }
 
@@ -24,6 +25,7 @@ const ProblemPost: React.FC<Props> = ({
   twitterID,
   upvoteCount,
   createdAt,
+  isReported,
   isUpvoted
 }) => {
   const formattedTime = getFormattedTime(createdAt);
@@ -55,7 +57,7 @@ const ProblemPost: React.FC<Props> = ({
                   </p>
 
                   <p className="ml-1">{formattedTime}</p>
-                  <span>| <LinkReportProblem id={id} /></span>
+                  <span>| <LinkReportProblem id={id} isReported={isReported} /></span>
                 </div>
               </div>
             </div>

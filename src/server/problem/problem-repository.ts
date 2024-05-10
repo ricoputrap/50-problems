@@ -93,6 +93,11 @@ class ProblemRepository implements IProblemRepository {
         .insert(reportTable)
         .values({ problem_id: id });
 
+      await db
+        .update(problemTable)
+        .set({ is_reported: 1 })
+        .where(eq(problemTable.id, id));
+
       return true;
     }
     catch (error) {

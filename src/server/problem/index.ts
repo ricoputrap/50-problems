@@ -135,5 +135,7 @@ export async function getAllTopLatestProblems() {
 
 export async function reportProblem(id: number) {
   const isSuccess = await problemRepository.report(id);
+  revalidatePath("/");
+
   return isSuccess;
 }

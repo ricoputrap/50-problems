@@ -1,23 +1,28 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { reportProblem } from '@/server/problem';
 import React from 'react'
 
 interface Props {
   id: number;
+  isReported: boolean;
 }
 
-const LinkReportProblem: React.FC<Props> = ({ id }) => {
+const LinkReportProblem: React.FC<Props> = ({ id, isReported }) => {
   const handleClick = async () => {
+    if (isReported) return;
     await reportProblem(id);
   }
 
   return (
     <span
-      className="cursor-pointer hover:underline"
+      className={cn(
+        isReported ? "text-red-500" : "cursor-pointer hover:underline"
+      )}
       onClick={handleClick}
     >
-      report
+      {isReported ? 'reported' : 'report'}
     </span>
   )
 }

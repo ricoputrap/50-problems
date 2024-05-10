@@ -19,6 +19,7 @@ const FeedProblems: React.FC<Props> = ({ problems, startCursor = 0 }) => {
         twitter_username,
         upvote_count,
         created_at,
+        is_reported,
         isUpvoted
       }, index) => (
         <ProblemPost
@@ -30,6 +31,7 @@ const FeedProblems: React.FC<Props> = ({ problems, startCursor = 0 }) => {
           twitterID={twitter_username}
           upvoteCount={upvote_count}
           createdAt={created_at}
+          isReported={is_reported == 1}
           isUpvoted={isUpvoted}
         />
       ))}
