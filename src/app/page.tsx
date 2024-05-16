@@ -3,6 +3,7 @@ import AddProblemButton from "@/components/_home/AddProblemButton";
 import Feed from "@/components/_home/Feed";
 import FeedTab from "@/components/_home/FeedTab";
 import { EnumFeedTab } from "@/types/feed.types";
+import Link from "next/link";
 import { Suspense } from "react";
 
 export default function Home({
@@ -40,6 +41,21 @@ export default function Home({
           <Feed tab={searchParams.tab || EnumFeedTab.NEW} />
         </Suspense>
       </section>
+
+      <footer className="bg-background">
+        <p className="text-center text-sm">
+          © 2024 - 50 Problems.
+
+          Made with ❤️ by&nbsp;
+            <Link
+              target="_blank"
+              href="https://twitter.com/rico_rpp21"
+              className="text-blue-500"
+            >
+              Rico
+            </Link>
+        </p>
+      </footer>
     </main>
   );
 }
