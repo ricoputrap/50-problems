@@ -27,7 +27,7 @@ export default async function Feed({ tab }: { tab: EnumFeedTab }) {
   const problems = await getProblems(tab);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 pb-10">
       <FeedProblems problems={problems} />
     </div>
   )

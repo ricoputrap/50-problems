@@ -37,7 +37,7 @@ export default function Home({
       {/* Feed */}
       <section className="mt-8">
         <Suspense fallback={<FeedSkeleton />}>
-          <Feed tab={searchParams.tab || EnumFeedTab.TOP} />
+          <Feed tab={searchParams.tab || EnumFeedTab.NEW} />
         </Suspense>
       </section>
     </main>

@@ -10,7 +10,7 @@ const FeedTab: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const activeTab: EnumFeedTab = searchParams.get('tab') as EnumFeedTab || EnumFeedTab.TOP;
+  const activeTab: EnumFeedTab = searchParams.get('tab') as EnumFeedTab || EnumFeedTab.NEW;
   
   const changeTab = (tab: EnumFeedTab) => {
     const params = new URLSearchParams(searchParams);
@@ -26,15 +26,6 @@ const FeedTab: React.FC = () => {
     <div>
       <div className='mt-4 p-1 w-full grid grid-cols-2 bg-accent-foreground rounded-lg'>
         <div
-          onClick={() => changeTab(EnumFeedTab.TOP)}
-          className={cn(
-            "text-center cursor-pointer py-2 rounded-md text-accent font-bold",
-            activeTab === EnumFeedTab.TOP && "bg-accent text-accent-foreground font-bold"
-          )}
-        >
-          Top
-        </div>
-        <div
           onClick={() => changeTab(EnumFeedTab.NEW)}
           className={cn(
             "text-center cursor-pointer py-2 rounded-md text-accent font-bold",
@@ -42,6 +33,15 @@ const FeedTab: React.FC = () => {
           )}
         >
           New
+        </div>
+        <div
+          onClick={() => changeTab(EnumFeedTab.TOP)}
+          className={cn(
+            "text-center cursor-pointer py-2 rounded-md text-accent font-bold",
+            activeTab === EnumFeedTab.TOP && "bg-accent text-accent-foreground font-bold"
+          )}
+        >
+          Top
         </div>
       </div>
     </div>
