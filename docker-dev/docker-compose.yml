@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  app-50-problems:
+    build: .
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/app/50-problems
+    env_file:
+      - .env
