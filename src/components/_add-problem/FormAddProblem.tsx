@@ -59,7 +59,7 @@ const FormAddProblem: React.FC = () => {
         username && "hidden"
       )}>
         <Label htmlFor='twitter_username' className="text-sm font-bold">
-          Your twitter ID (<i>e.g. johndoe</i>)*
+          Your twitter ID (<i>e.g. johndoe</i>)
         </Label>
         <Input
           type="text"
