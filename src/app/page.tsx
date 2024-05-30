@@ -44,9 +44,9 @@ export default function Home({
 
       <footer className="bg-background">
         <p className="text-center text-sm">
-          © 2024 - 50 Problems -
+          © 2024 - 50 Problems.
 
-          made with ❤️ by&nbsp;
+          Made with ❤️ by&nbsp;
             <Link
               target="_blank"
               href="https://twitter.com/rico_rpp21"
